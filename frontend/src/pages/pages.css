@@ -1,0 +1,182 @@
+.navigation_bar{
+    width: 100%; /* Adjust to full width or according to your design */
+    background-color: #0c0738; /* Your existing color */
+    display: flex; /* Use Flexbox for layout */
+    justify-content: space-around; /* Distribute space around links */
+    align-items: center; /* Center items vertically */
+    padding: 10px 0; /* Add some padding */
+    flex-direction: row;
+}
+
+.navigation_bar a{
+    color: white; /* Change link color to white or as per your design */
+    text-decoration: none; /* Remove underline from links */
+    margin: 0 15px; /* Add margin between links */
+    font-size: 16px; /* Adjust font size */
+    
+}
+
+.navigation_bar ul {
+    list-style-type: none; /* Removes default list styling */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Ensures flex layout for list items */
+  }
+  
+.navigation_bar li {
+    margin-right: 20px; /* Adjust spacing between links */
+  }
+
+
+
+.oneai_image {
+  width: 95px; /* Adjust the width as needed */
+  
+}
+
+.single-rewrite-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.single-rewrite-container .rewrite-text {
+  flex-grow: 1;
+  margin-right: 20px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  font-size: 16px;
+  color: #333;
+}
+
+.single-rewrite-container .rewrite-field {
+  flex-grow: 1;
+  margin-right: 20px;
+  padding: 10px;
+  width:fit-content;
+  border-radius: 8px;
+  
+  font-size: 16px;
+  color: #333;
+  
+  white-space: nowrap;
+  
+}
+
+.single-rewrite-container input[type="text"] {
+  margin-left: 10px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  font-size: 14px;
+}
+
+.single-rewrite-container input[type="number"] {
+  margin-left: 10px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  font-size: 14px;
+}
+
+.single-rewrite-container input[type="text-wide"] {
+  display: flex;
+  align-items: center;
+  
+  margin-right: 20px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  font-size: 14px;
+  width: 447%;
+  
+}
+
+.annotation_container_headline {
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+  align-items: center; /* Centers the button vertically if the container has a specific height */
+  
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+  align-items: center; /* Centers the button vertically if the container has a specific height */
+  padding: 20px; /* Add padding as needed */
+}
+
+.button-container button {
+  background-color: #160a7e;
+  color: white;
+  margin: 0 auto;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: #0c0738;
+}
+
+/* TextBoxTurns specific styles */
+.textbox-turns {
+  width: 60%; /* Adjust based on preference */
+  height: 300px; /* Fixed height, adjust as needed */
+  margin: 0 auto; /* Center horizontally */
+  resize: none; /* Prevent resizing */
+  padding: 15px; /* Adjust padding for internal spacing */
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-size: 16px; /* Adjust font size as needed */
+  display: block; /* Use block to fill width for centering margin auto */
+  background-color: #fff; /* Background color */
+  margin-bottom: 30px; 
+}
+
+.textbox-turns textarea {
+  width: 100%; /* Fill the container */
+  height: 100%; /* Fill the container */
+  border: none; /* Remove if you don't want double borders */
+  resize: none; /* Prevent resizing */
+  font-size: 16px; /* Consistent font size */
+  /* Add more styling as needed */
+}
+
+.annotation_container {
+  margin: 0 auto; /* Centers the container horizontally */
+  background-color: #fafafa;
+  width: 80%; /* Adjust the width as needed */
+  
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 10%;
+}
+
+.homePageContainer {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Centers the items horizontally */
+  align-items: center; /* Centers the items vertically */
+  padding: 20px; /* Add padding as needed */
+}
+

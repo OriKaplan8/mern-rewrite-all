@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Neucha&family=Poppins:wght@500&display=swap');
+
+h1 {
+    font-family: Poppins;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh; /* Adjust the height as needed */
+  flex-direction: column;
+  background-color: #ededed;
+  margin: 0 auto; /* Centers the container horizontally */
+  background-color: #fafafa;
+  width: 80%; /* Adjust the width as needed */
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 10%;
+}
+
+.signup-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 300px;
+  
+}
+
+.form-group {
+  margin-bottom: 015px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 80%;
+  padding: 10px ;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: block; /* Display the input elements as block elements */
+  
+}
+
+.AccountSumbitButtonsContainer {
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+  align-items: center; /* Centers the button vertically if the container has a specific height */
+  padding: 20px; /* Add padding as needed */
+  
+}
+
+
+

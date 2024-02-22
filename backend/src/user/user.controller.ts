@@ -45,6 +45,12 @@ export class UserController {
         return await this.userService.getTurnNum(user);
     }
 
+    @UseGuards(jwtGuard)
+    @Get('dialogNum')
+    async getDialogNum(@GetUser() user: User, ){
+        return await this.userService.getDialogNum(user);
+    }
+
 
 
 

@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, Headers, Get } from '@nestjs/common';
 import { AnnotationService } from './annotation.service';
 import { AnnotationDto } from './dto/annotation.dto';
 import { jwtGuard } from 'src/guard/jwt.guard';
@@ -14,5 +14,12 @@ export class AnnotationController {
     (@Body() annotationDto: AnnotationDto, @GetUser() user,
     ) {
         return this.annotationService.annotate(annotationDto, user)
+    }
+
+    
+    @Get('userAnnotations')
+    async getAnnotationsById
+    (@Headers('userId') userId: string) {
+        return this.annotationService.getAnnotationsById(userId)
     }
 } 

@@ -9,6 +9,7 @@ import { AnnotationService } from './annotation.service';
     MongooseModule.forFeature([{name: 'Annotation', schema: AnnotationSchema}])
   ],
   controllers: [AnnotationController],
-  providers: [AnnotationService]
+  providers: [AnnotationService],
+  exports: [AnnotationService]
 })
 export class AnnotationModule {} 

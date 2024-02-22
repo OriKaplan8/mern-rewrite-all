@@ -44,6 +44,16 @@ export class UserService {
             turn_num: userDetails.progress[2]
         };
     }
+
+    async getDialogNum(user) {
+        const { userId } = user;
+        
+        const userDetails: User = await this.userModel.findOne({_id: userId});
+        return {
+            dialog_num: userDetails.progress[1]
+        };
+    }
+
     async getCurrentUserTurn(user) {
         const progress = await this.userProgress(user);
         return this.turnService.getTurnByBatchDialogTurn(progress)
@@ -85,6 +95,8 @@ export class UserService {
         return this.turnService.getAllTurnsByDialogNum(progress.batch_num, progress.dialog_num)
     }  
     
+
+
 
     
 }

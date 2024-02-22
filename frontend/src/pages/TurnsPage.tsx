@@ -6,19 +6,22 @@ import SingleRewrite from '../components/turns/SingleRewrite'; // Import SingleR
 import TurnHandler, { AnnotatorRewrite, RequireRewrite } from '../components/turns/TurnHandler'; // Correctly imported with TurnType
 import SingleAnnotatorRewrite from '../components/turns/SingleAnnotatorRewrite';
 import SingleRequiresRewrite from '../components/turns/SingleRequiresRewrite';
+import ShowProgress from '../components/turns/ShowProgress';
 
 const Turns = () => {
     UserCheck(); // Check if user is signed in
 
     const [questionAnswerString, setQuestionAnswerString] = useState('');
     const [questionAnswerStringList, setQuestionAnswerStringList] = useState<string[]>([]);
+    
     const [rewrites, setRewrites] = useState<string[]>([]);
     const [rewritesList, setRewritesList] = useState<string[][]>([]); 
+    
     const [turnNum, setTurnNum] = useState(0);
+    const [dialogNum, setDialogNum] = useState(0);
+    const [batchNum, setBatchNum] = useState(0);
 
     const [rewriteFeedback, setRewriteFeedback] = useState<{score: number, optimal: number}[]>([]);
-
-
     const [annotatorRewriteFeedback, setAnnotatorRewriteFeedback] = useState<AnnotatorRewrite>({annotatorRewrite:""});
     const [requiresRewriteFeedback, setRequiresRewriteFeedback] = useState<RequireRewrite>({requiresRewrite: -1});
 
@@ -26,24 +29,34 @@ const Turns = () => {
 
     // Function to fetch and display turn data and rewrites
     const getTurns = async () => {
-        console.log('get some turns');
-        const dialogTurns = await TurnHandler.getFormattedDialogQA();
-        const dialogRewrites = await TurnHandler.getDialogRewrites();
-        const nums = await TurnHandler.getBatchDialogNums();
-        const turnNumber = await TurnHandler.getTurnNum();
-        console.log(turnNumber)
-        
-        if (dialogTurns && dialogRewrites && turnNumber) {
+        try {
+            const dialogTurns = await TurnHandler.getFormattedDialogQA();
+            if (!dialogTurns) throw new Error("Failed to load dialog turns.");
+    
+            const dialogRewrites = await TurnHandler.getDialogRewrites();
+            if (!dialogRewrites) throw new Error("Failed to load dialog rewrites.");
+    
+            const turnNumber = await TurnHandler.getTurnNum();
+            if (!turnNumber && turnNumber !== 0) throw new Error("Failed to load turn number."); // Including check for 0 since it's a falsy value but valid for turnNumber
+    
+            const dialogNumber = await TurnHandler.getDialogNum();
+            if (!dialogNumber && dialogNumber !== 0) throw new Error("Failed to load dialog number."); // Including check for 0 since it's a falsy value but valid for dialogNumber
+    
+            // Assuming all data is loaded successfully if the code execution reaches here
             setQuestionAnswerStringList(dialogTurns);
             setRewritesList(dialogRewrites);
             setQuestionAnswerString(dialogTurns[0] || "Turn data is empty.");
             setRewrites(dialogRewrites[0] || []);
-            setTurnNum(turnNumber); // Reset turn number to 0
-            setIsDataLoaded(true); // Set flag to true since data is loaded
-        } else {
+            setTurnNum(turnNumber);
+            setDialogNum(dialogNumber);
+            setIsDataLoaded(true);
+        } catch (error: any) {
+            console.error(error.message); // Log the specific error message
             setQuestionAnswerString("Failed to load turn data.");
+            // Optionally, you could also set the loading state to false or handle the error in other ways here
         }
     };
+    
 
     const nextTurn = async () => {
         // Check if rewriteFeedback is non-empty and every element has 'score' and 'optimal' fields filled
@@ -98,11 +111,17 @@ const Turns = () => {
 
     return (
         <div className='annotation_container'>
+            {isDataLoaded && <ShowProgress batchNumber={batchNum} turnNumber={turnNum} dialogNumber={dialogNum} />}
             <h1 className='annotation_container_headline'>Press Load Turns and start Annotating</h1>
             <div className='button-container'>
                 <button className='button-container' onClick={getTurns}>Load Turns</button>
+                
             </div>
+            
+
             <TextBoxTurns dialog_text={questionAnswerString} />
+
+
             {isDataLoaded && <SingleRequiresRewrite
                 key={`requires-rewrite-${turnNum}`}
                 onUpdate={(requiresRewriteText:number)=>{

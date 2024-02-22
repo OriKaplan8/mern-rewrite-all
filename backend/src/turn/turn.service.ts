@@ -99,13 +99,15 @@ export class TurnService {
 
     async getAllTurns() {
         const turns = await this.turnModel.find().exec();
-
-        if (!turns) {
-            throw new NotFoundException('No Turns in Dataset')
+    
+        if (!turns || turns.length === 0) {
+            throw new NotFoundException('No Turns in Dataset');
         }
+    
+        // Assuming you want to return the turns in a dictionary format
+        return turns; // This will return an object with a key 'turns' that contains the array of turns
     }
-
-
+  
    
         
 

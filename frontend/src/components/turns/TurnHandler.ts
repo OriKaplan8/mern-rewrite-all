@@ -37,6 +37,8 @@ class TurnHandler {
       return null;
     }
   }
+
+  
    
   // Method to fetch the current user's turn
   static async getCurrentTurn(): Promise<TurnType | null> {
@@ -127,6 +129,17 @@ class TurnHandler {
       const config = Bearer(); // Ensure this returns the correct Axios request config object, including headers
       const response = await axios.get('http://localhost:3001/users/turnNum', config);
       return response.data.turn_num;
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+      return null;
+    }
+  }
+
+  static async getDialogNum(): Promise<number | null> {
+    try {
+      const config = Bearer(); // Ensure this returns the correct Axios request config object, including headers
+      const response = await axios.get('http://localhost:3001/users/dialogNum', config);
+      return response.data.dialog_num;
     } catch (error) {
       console.error("Failed to fetch data:", error);
       return null;

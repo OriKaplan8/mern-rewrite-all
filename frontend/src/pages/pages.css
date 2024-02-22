@@ -119,6 +119,8 @@
   padding: 20px; /* Add padding as needed */
 }
 
+
+
 .button-container button {
   background-color: #160a7e;
   color: white;
@@ -179,4 +181,33 @@
   align-items: center; /* Centers the items vertically */
   padding: 20px; /* Add padding as needed */
 }
+
+.progressContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+  
+  width: 250px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  margin-left: 1%;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.progressDigit {
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #fafafa;
+  border-radius: 8px; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  padding: 4px;
+  
+  justify-content: center;
+  align-items: center;
+}
+
+
 

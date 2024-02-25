@@ -57,8 +57,7 @@ const Account: React.FC = () => {
                 }, 1000);
                 })
                 .catch(function (error) {
-                    console.log(error);
-                    setMessage(error.response.data.message[0]);
+                    setMessage(error.response.data.message);
                     setMessageColor('red');
                 });
             

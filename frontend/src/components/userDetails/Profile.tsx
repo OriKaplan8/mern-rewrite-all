@@ -28,8 +28,9 @@ const Profile = () => {
 
 
   return (
-    <div>
-      <h1>Hello, {username}</h1>
+    <div className='container'>
+      <h1>Hello, {username}</h1>  
+      
       <button
       onClick={handleClick}
       

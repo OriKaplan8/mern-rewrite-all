@@ -13,6 +13,7 @@ interface UserProgress {
 
 const GlobalUserProgress = () => {
     const [userProgresses, setUserProgresses] = useState<UserProgress[]>([]); // Typing the state
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchProgress = async () => {
@@ -22,11 +23,23 @@ const GlobalUserProgress = () => {
                 setUserProgresses(response.data);
             } catch (error) {
                 console.error("Failed to fetch data:", error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
         fetchProgress();
     }, []);
+
+    if (isLoading) {
+        return (
+            <div style={{ textAlign: 'center' }}> {/* Center the content */}
+                <div>Loading...</div>
+                <img className='loading' src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca.gif" alt="Loading..." style={{ margin: 'auto' }} />
+            </div>
+        );
+    }
+    
 
     return (
         <div className="userProgressContainer" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>

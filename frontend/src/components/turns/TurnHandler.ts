@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Bearer from '../validation/Bearer';
+import { GetUser } from '../../../../backend/src/auth/decorator/get-user-decorator';
 
 // Define the structure of the turn data
 export type TurnType = {
@@ -23,6 +24,12 @@ export type RequireRewrite = {
 
 export type AnnotatorRewrite = {
   annotatorRewrite: string;
+}
+
+export type UserProgress = {
+  batch_num: number;
+  dialog_num: number;
+  turn_num: number;
 }
 
 class TurnHandler {
@@ -74,6 +81,30 @@ class TurnHandler {
         annotator_rewrite: annotator_rewrite.annotatorRewrite,
         rewrites_scores: rewrite_scores.map(item => item.score),
         rewrites_optimals: rewrite_scores.map(item => item.optimal),
+      }
+      
+      const response = await axios.post('http://localhost:3001/annotations/annotate', newbody, config);
+      
+      return null
+    } catch (error) {
+      console.error("Failed to save annotation", error);
+      return error;
+    }
+      
+  }
+
+  static async saveAnnotationRequireRewrite(userProgress: UserProgress, requires_rewrite: number) { 
+    
+    try {
+      const config = Bearer(); // Ensure this returns the correct Axios request config object, including headers
+      const newbody = {
+        batch_num: userProgress.batch_num,
+        dialog_num: userProgress.dialog_num,
+        turn_num: userProgress.turn_num,
+        requires_rewrite: requires_rewrite,
+        annotator_rewrite: 'placeholder',
+        rewrites_scores: [-1],
+        rewrites_optimals: [-1],
       }
       
       const response = await axios.post('http://localhost:3001/annotations/annotate', newbody, config);
@@ -157,7 +188,18 @@ class TurnHandler {
     );
     
     return formattedTurns;
-}
+  }
+
+  static async GetUserProgress(): Promise<UserProgress | null> {
+       try {
+        const config = Bearer();
+        const response = await axios.get('http://localhost:3001/users/currentUserProgress', config);
+        return response.data;
+       } catch (error) {
+        console.error("Failed to fetch UserProgress: ", error);
+        return null
+       }
+  }
 }
 
 export default TurnHandler;

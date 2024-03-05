@@ -24,6 +24,9 @@ const Layout = () => {
           <li>
             <Link to="/dashboard">Dashboard</Link>
           </li>
+          <li>
+            <Link to="/require-rewrite">RequireRewrite</Link>
+          </li>
         </ul>
       </nav>
 

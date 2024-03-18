@@ -107,6 +107,11 @@ export class TurnService {
         // Assuming you want to return the turns in a dictionary format
         return turns; // This will return an object with a key 'turns' that contains the array of turns
     }
+
+
+    getUserCurrentBatch(user: User) {
+        console.log(user)
+    }
   
    
         

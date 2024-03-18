@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../../api';
 import { useEffect, useState } from 'react'
 import Bearer from '../validation/Bearer';
 
@@ -11,7 +11,7 @@ const Profile = () => {
         const fetchName = async () =>{
             try {
                 const config = Bearer()
-                const response = await axios.get('http://localhost:3001/users/name',config);
+                const response = await api.get('/users/name',config);
                 setUserame(response.data.name);
             } catch (error) {
                 console.error('Error getting name:', error);

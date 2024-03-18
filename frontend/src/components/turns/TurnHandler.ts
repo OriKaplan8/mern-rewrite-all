@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../../api';
 import Bearer from '../validation/Bearer';
 import { GetUser } from '../../../../backend/src/auth/decorator/get-user-decorator';
 
@@ -37,7 +37,7 @@ class TurnHandler {
   static async getCurrentDialogTurns() : Promise<TurnType[] | null> {
     try {
       const config = Bearer(); // Ensure this returns the correct Axios request config object, including headers
-      const response = await axios.get<TurnType[]>('http://localhost:3001/users/currentUserDialogTurns', config);
+      const response = await api.get<TurnType[]>('/users/currentUserDialogTurns', config);
       return response.data;
     } catch (error) {
       console.error("Failed to fetch data:", error);
@@ -51,7 +51,7 @@ class TurnHandler {
   static async getCurrentTurn(): Promise<TurnType | null> {
     try {
       const config = Bearer(); // Ensure this returns the correct Axios request config object, including headers
-      const response = await axios.get<TurnType>('http://localhost:3001/users/currentUserTurn', config);
+      const response = await api.get<TurnType>('/users/currentUserTurn', config);
       return response.data;
     } catch (error) {
       console.error("Failed to fetch data:", error);
@@ -62,7 +62,7 @@ class TurnHandler {
   static async nextTurn() {
       try {
         const config = Bearer(); // Ensure this returns the correct Axios request config object, including headers
-        const response = await axios.patch<TurnType>('http://localhost:3001/users/nextUserTurn',{}, config);
+        const response = await api.patch<TurnType>('/users/nextUserTurn',{}, config);
         return null
       } catch (error) {
         console.error("Failed to get next turn:", error);
@@ -83,7 +83,7 @@ class TurnHandler {
         rewrites_optimals: rewrite_scores.map(item => item.optimal),
       }
       
-      const response = await axios.post('http://localhost:3001/annotations/annotate', newbody, config);
+      const response = await api.post('/annotations/annotate', newbody, config);
       
       return null
     } catch (error) {
@@ -107,7 +107,7 @@ class TurnHandler {
         rewrites_optimals: [-1],
       }
       
-      const response = await axios.post('http://localhost:3001/annotations/annotate', newbody, config);
+      const response = await api.post('/annotations/annotate', newbody, config);
       
       return null
     } catch (error) {
@@ -158,7 +158,7 @@ class TurnHandler {
   static async getTurnNum(): Promise<number | null> {
     try {
       const config = Bearer(); // Ensure this returns the correct Axios request config object, including headers
-      const response = await axios.get('http://localhost:3001/users/turnNum', config);
+      const response = await api.get('/users/turnNum', config);
       return response.data.turn_num;
     } catch (error) {
       console.error("Failed to fetch data:", error);
@@ -169,7 +169,7 @@ class TurnHandler {
   static async getDialogNum(): Promise<number | null> {
     try {
       const config = Bearer(); // Ensure this returns the correct Axios request config object, including headers
-      const response = await axios.get('http://localhost:3001/users/dialogNum', config);
+      const response = await api.get('/users/dialogNum', config);
       return response.data.dialog_num;
     } catch (error) {
       console.error("Failed to fetch data:", error);
@@ -193,7 +193,7 @@ class TurnHandler {
   static async GetUserProgress(): Promise<UserProgress | null> {
        try {
         const config = Bearer();
-        const response = await axios.get('http://localhost:3001/users/currentUserProgress', config);
+        const response = await api.get('/users/currentUserProgress', config);
         return response.data;
        } catch (error) {
         console.error("Failed to fetch UserProgress: ", error);

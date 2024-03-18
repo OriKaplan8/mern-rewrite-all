@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../../api';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './Account.css'
@@ -44,7 +44,7 @@ const Account: React.FC = () => {
                 password: formData.password,
             };
 
-            axios.post('http://localhost:3001/auth/signin', body)
+            api.post('/auth/signin', body)
             .then((response) => {
                 console.log(response);
                 const token = response.data.token;
@@ -74,7 +74,7 @@ const Account: React.FC = () => {
         } else {
             const {username, email, password} = formData;
 
-            axios.post(('http://localhost:3001/auth/signup'), {
+            api.post(('auth/signup'), {
                 name: username,
                 email: email,
                 password: password

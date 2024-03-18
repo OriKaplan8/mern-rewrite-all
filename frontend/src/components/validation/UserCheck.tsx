@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
+import api from '../../api';
 import { useNavigate } from 'react-router-dom';
 import Bearer from './Bearer';
 
@@ -12,7 +12,7 @@ const UserCheck = () => {
       if (jwtToken) {
         const config = Bearer();
         try {
-          await axios.get('http://localhost:3001/auth/isjwtvalid', config)
+          await api.get('/auth/isjwtvalid', config)
           
           
           // If the token is valid, you might not need to do anything here

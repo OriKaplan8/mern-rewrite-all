@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../../api';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ const UserDetails = () => {
     const handleSubmit=(event: React.FormEvent)=>{
         event.preventDefault()
       
-    const response = axios.post(('http://localhost:3001/auth/signup'), {
+    const response = api.post(('/auth/signup'), {
             name: username,
             email: email,
             password: password

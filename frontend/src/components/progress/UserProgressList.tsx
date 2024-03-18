@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // Import axios if you're fetching data from an API
-import axios from 'axios';
+import api from '../../api';
 import SingleUserProgress from './SingleUserProgress';
 
 
@@ -19,7 +19,7 @@ const GlobalUserProgress = () => {
         const fetchProgress = async () => {
             try {
                 const config = {}; // Replace with your actual config for Axios
-                const response = await axios.get('http://localhost:3001/progress/globalProgressAllAnnotators', config);
+                const response = await api.get('/progress/globalProgressAllAnnotators', config);
                 setUserProgresses(response.data);
             } catch (error) {
                 console.error("Failed to fetch data:", error);

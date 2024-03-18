@@ -29,6 +29,11 @@ export class BatchController {
         return await this.turnService.getBatchLenByDialogNum(batch_num);
     }
 
+    @Get('UserCurrentBatch')
+    async getUserCurrentBatch(@GetUser() user: User,){
+        return await this.turnService.getUserCurrentBatch(user);
+    }
+
     
 
     

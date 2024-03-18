@@ -1,6 +1,6 @@
 // AuthContext.tsx
 import React, { createContext, useContext, ReactNode, useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../api';
 import { useNavigate } from 'react-router-dom';
 
 interface AuthContextType {
@@ -34,7 +34,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         try {
           // Assuming Bearer function returns axios configuration with headers
           const config = { headers: { Authorization: `Bearer ${jwtToken}` } };
-          await axios.get('http://localhost:3001/auth/isjwtvalid', config);
+          await api.get('/auth/isjwtvalid', config);
           setIsAuthenticated(true);
         } catch (error) {
           localStorage.removeItem('jwtToken');

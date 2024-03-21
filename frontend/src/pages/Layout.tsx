@@ -12,7 +12,7 @@ const Layout = () => {
           <img src={imageUrl} className="oneai_image" alt="Home"/>
         </Link>
         <ul>
-          <li>
+          <li className="mr-5">
             <Link to="/">Home</Link>
           </li>
           <li>
@@ -26,6 +26,9 @@ const Layout = () => {
           </li>
           <li>
             <Link to="/require-rewrite">RequireRewrite</Link>
+          </li>
+          <li>
+            <Link to="/creator">Creator</Link>
           </li>
         </ul>
       </nav>

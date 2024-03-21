@@ -9,6 +9,9 @@ import { AnnotationModule } from './annotation/annotation.module';
 import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
 import { ProgressModule } from './progress/progress.module';
+import { JsonController } from './json/json.controller';
+import { JsonService } from './json/json.service';
+import { JsonModule } from './json/json.module';
 
 
 
@@ -20,8 +23,10 @@ import { ProgressModule } from './progress/progress.module';
     MongooseModule.forRoot(process.env.DB_URI),
 
     TurnModule, 
-    AuthModule, AnnotationModule, UserModule, ProgressModule,
+    AuthModule, AnnotationModule, UserModule, ProgressModule, JsonModule,
   ],
+  controllers: [JsonController],
+  providers: [JsonService],
   
   
 

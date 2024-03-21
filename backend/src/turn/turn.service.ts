@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel} from '@nestjs/mongoose'
 import { Model } from 'mongoose';
-import { Turn } from './turn.schema';
+import { Turn } from './schemas/turn.schema';
 import { EmptyError } from 'rxjs';
 import { ExceptionsHandler } from '@nestjs/core/exceptions/exceptions-handler';
 import { TurnDto } from './dto/turn.dto';

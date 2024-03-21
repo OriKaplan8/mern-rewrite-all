@@ -135,3 +135,9 @@ button:hover {
   height: 5%;
   margin: 5px;
 }
+
+.light {
+  font-weight: normal;
+  color: #000000;
+  
+}

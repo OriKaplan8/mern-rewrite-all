@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { TurnSchema } from './turn.schema';
+import { TurnSchema } from './schemas/turn.schema';
 import { TurnService } from './turn.service';
 import { TurnController } from './turn.controller';
 import { AuthModule } from 'src/auth/auth.module';

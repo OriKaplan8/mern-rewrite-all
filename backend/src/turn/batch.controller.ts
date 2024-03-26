@@ -44,26 +44,25 @@ export class BatchController {
         filename: (req, file, cb) => {
         const name = file.originalname.split('.')[0];
         const fileExtension = file.originalname.split('.')[1];
-        const newFileName = name.split("").join('_') + '_' + Date.now() + '.' + fileExtension;
+        const newFileName = name.split(" ").join('_') + '_' + Date.now() + '.' + fileExtension;
         cb(null, newFileName);
         }
     }),
     fileFilter: (req, file, cb) => {
-        if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-        return cb(null, false);
+        if (!file.originalname.match(/\.(json)$/)) {
+        return cb(new BadRequestException('Invalid file format'), false);
         }
         cb(null, true);
     }
     }))
     uploadBatch(@UploadedFiles() files: Express.Multer.File[]) {
     if (!files || files.length === 0) {
-        throw new BadRequestException('File is not good');
+        throw new BadRequestException('No files provided');
     } else {
-        
         const response = files.map(file => ({
-            filepath: `http://localhost:5000/posts/pictures/${file.filename}`
+        filepath: `http://localhost:5000/posts/json/${file.filename}`
         }));
-        console.log(response)
+        console.log(response);
         return response;
     }
     }

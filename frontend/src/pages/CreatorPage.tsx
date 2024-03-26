@@ -17,8 +17,18 @@ const Creator = () => {
         } else {
 
             const fd = new FormData();
-            for (let i = 0; i < files.length; i++)
-                fd.append(`file`, files[i]);
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const fileExtension = file.name.split('.').pop()?.toLocaleLowerCase();
+
+                if (fileExtension !== 'json') {
+                    setMsg("Invalid File Format. Only Json supported");
+                    return null;
+                }
+
+                fd.append(`file`, file);
+            }
+                
             
             setMsg("Uploading...");
             setProgress(prevState => {
@@ -35,10 +45,10 @@ const Creator = () => {
 
             })
             .then(res => {
-                setMsg("Upload nigga");
+                setMsg("Upload Complete");
                 console.log(res.data)})
             .catch(err => {
-                setMsg("Upload faled");
+                setMsg("Upload Failed");
                 console.log(err.response.data);});
         }
     }
@@ -66,13 +76,20 @@ const Creator = () => {
                 <button type="submit">Upload</button>
 
                 {progress.started &&
-                 <progress max="100" value={progress.pc}></progress>
+                 <progress 
+                 style={{
+                    width: '100%',
+                    height: '20px',
+                  }}
+                 max="100" 
+                 value={progress.pc}/>
                 }
+                <div>
                 {msg && <span>{msg}</span>}
+                </div>
+                
             </form>
         </div>
-
-
     )
 }
 

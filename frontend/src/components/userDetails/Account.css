@@ -35,22 +35,9 @@ h1 {
   margin-bottom: 015px;
 }
 
-label {
-  display: block;
-  font-weight: bold;
-}
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  width: 80%;
-  padding: 10px ;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  display: block; /* Display the input elements as block elements */
-  
-}
+
+
 
 .AccountSumbitButtonsContainer {
   display: flex;

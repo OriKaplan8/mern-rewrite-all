@@ -15,6 +15,8 @@ import Dashboard from './pages/Dashboard';
 import './App.css';
 import RequiresRewritePage from './pages/RequiresRewritePage';
 import Creator from './pages/CreatorPage';
+import JsonSelector from './pages/JsonSelector/JsonSelector';
+import AnnotationRREC from './pages/AnnotationRREC/AnnotatorRREC';
 
 const AppRoutes: React.FC = () => {
   const { isAuthenticated, loading } = useAuth();
@@ -27,8 +29,10 @@ const AppRoutes: React.FC = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="account" element={<Accounts />} />
+        <Route path="json-selector" element={<JsonSelector />} />
+        <Route path="RREC-annotator" element={<AnnotationRREC />} />
         {/* Protect the Turns and Dashboard routes */}
-        <Route path="turns" element={isAuthenticated ? <Turns /> : <Navigate replace to="/account" />} />
+       
         <Route path="require-rewrite" element={isAuthenticated ? <RequiresRewritePage /> : <Navigate replace to="/account" />} />
         <Route path="dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate replace to="/account" />} />
         <Route path="creator" element={isAuthenticated ? <Creator /> : <Navigate replace to="/account" />} />

@@ -6,4 +6,4 @@ export class jwtGuard extends AuthGuard('jwt') {
     }
 }
 
-export * from './jwt.guard';
+export * from './jwt.guard'; 

@@ -15,43 +15,14 @@ export class UserController {
     }
 
 
-    @UseGuards(jwtGuard)
-    @Get('currentUserTurn')
-    async getCurrentUserTurn(@GetUser() user: User, ){
-        return await this.userService.getCurrentUserTurn(user);
-    }
 
-    @UseGuards(jwtGuard)
-    @Get('currentUserDialogTurns')
-    async getCurrentUserDialogTurns(@GetUser() user: User, ){
-        return await this.userService.getCurrentUserDialogTurns(user);
-    }
 
-    @UseGuards(jwtGuard)
-    @Patch('nextUserTurn')
-    async nextUserTurn(@GetUser() user: User, ){
-        return await this.userService.nextUserTurn(user);
-    }
 
     @UseGuards(jwtGuard)
     @Get('name')
     async name(@GetUser() user: User, ){
         return await this.userService.getName(user);
     }
-
-    @UseGuards(jwtGuard)
-    @Get('turnNum')
-    async getTurnNum(@GetUser() user: User, ){
-        return await this.userService.getTurnNum(user);
-    }
-
-    @UseGuards(jwtGuard)
-    @Get('dialogNum')
-    async getDialogNum(@GetUser() user: User, ){
-        return await this.userService.getDialogNum(user);
-    }
-
-
 
 
 

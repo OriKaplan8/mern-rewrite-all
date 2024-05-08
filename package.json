@@ -6,7 +6,11 @@
     "concurrently": "^8.2.2"
   },
   "scripts": {
-    "start": "concurrently \"npm --prefix frontend start\" \"npm --prefix backend run start\""
+    "scripts": {
+      "start": "concurrently \"npm run server\" \"npm run client\"",
+      "server": "cd backend && npm run start:dev",
+      "client": "cd frontend && npm start"
+    }
   }
   
 }

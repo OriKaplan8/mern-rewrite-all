@@ -51,8 +51,6 @@ button {
   cursor: pointer;
   margin:  10px;
   margin-bottom: 10px;
-  
-  
 }
 
 button:hover {
@@ -139,5 +137,49 @@ button:hover {
 .light {
   font-weight: normal;
   color: #000000;
+  
+}
+
+.defaultContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  flex-direction: column;
+  background-color: #ededed;
+  margin: 0 auto; /* Centers the container horizontally */
+  background-color: #fafafa;
+  width: 80%; /* Adjust the width as needed */
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #ddd;
+
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 10%;
+}
+
+.centeredButton {
+  background-color: #160a7e;
+  color: #fff;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 40px;
+  cursor: pointer;
+  margin:  10px;
+  margin-bottom: 10px;
+
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  padding: 10px ;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: block; /* Display the input elements as block elements */
+}
+
+label {
+  display: block;
   
 }

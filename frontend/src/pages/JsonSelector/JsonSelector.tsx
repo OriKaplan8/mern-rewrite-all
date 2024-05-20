@@ -11,6 +11,7 @@ const JsonSelector: React.FC = () => {
     const [fileId, setFileId] = useState('');
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState(''); 
 
     const handleFileIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFileId(event.target.value);
@@ -25,15 +26,25 @@ const JsonSelector: React.FC = () => {
     };
 
     const handleStartClick = async () => {
-        // Perform the desired action with the file_id and username
-        console.log('File ID:', fileId);
-        console.log('Username:', username);
+        // Reset the error message
+        setErrorMessage('');
 
-        const jsonData = await fetchJsonFile(fileId, username);
-        if (isJsonDataType(jsonData)) {
-            navigate('/RREC-annotator', { state: { jsonData } });
-        } else {
-            console.warn('Fetched data is not of expected type.');
+        if (!fileId.trim() || !username.trim()) {
+            setErrorMessage('Please enter a valid file ID and username.');
+            return;
+        }
+        try {
+            const {jsonData, error} = await fetchJsonFile(fileId, username);
+            if (error) {
+                setErrorMessage(error);
+            } else if (isJsonDataType(jsonData)) {
+                navigate('/RREC-annotator', { state: { jsonData } });
+            } else {
+                console.warn('Fetched data is not of expected type.');
+            }
+        } catch (error: any) {
+            console.error('Error fetching JSON file:', error.message);
+            setErrorMessage("Error fetching JSON file: " + error.message);
         }
         
     };
@@ -51,8 +62,9 @@ const JsonSelector: React.FC = () => {
                 <input type="text" id="fileId" value={fileId} onChange={handleFileIdChange} />
 
                 
+
                 <button className="centeredButton" type="button" onClick={handleStartClick}>Start</button>
-                
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
             </form>
         </div>

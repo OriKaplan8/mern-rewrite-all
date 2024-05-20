@@ -1,9 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { findFirstEmptyTurn } from './AnnotatorRREC.functions';
 
-const AnnotationRREC = () => {
+interface JsonData {
+    json_data: any;
+    [key: string]: any;
+}
+
+const AnnotationRREC: React.FC = () => {
     const [text, setText] = useState('');
     const [choice1, setChoice1] = useState('');
     const [choice2, setChoice2] = useState('');
+
+    const location = useLocation();
+    const locationState = location.state as {jsonData?: JsonData} | undefined;
+    
+
+    useEffect(() => {
+        if (locationState && locationState.jsonData) {
+            setText(JSON.stringify(locationState.jsonData, null, 2)); // Pretty-print JSON with 2-space indentation
+        }
+    }, [locationState]);
+
+    if (!locationState || !locationState.jsonData) {
+        return <div>No JSON data found in location state.</div>;
+    }
+
+    
+
+    const jsonData = locationState.jsonData;
+
+    const handleFindFirstEmptyTurn = async () => {
+        try {
+            const parsedJson: JsonData = JSON.parse(text);
+            const firstEmptyTurnKey = await findFirstEmptyTurn(parsedJson);
+            console.log(`First empty turn key: ${firstEmptyTurnKey}`);
+        } catch (error) {
+            console.error('Invalid JSON format or structure:', error);
+        }
+    };
+   
 
     const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setText(event.target.value);
@@ -38,6 +74,8 @@ const AnnotationRREC = () => {
                     </select>
                 </label>
             </div>
+
+            <button onClick={() => handleFindFirstEmptyTurn}>Find first empty turn</button>
         </div>
     );
 };
